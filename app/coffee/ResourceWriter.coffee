@@ -16,7 +16,7 @@ module.exports = ResourceWriter =
 				jobs = for resource in resources
 					do (resource) =>
 						(callback) => @_writeResourceToDisk(project_id, resource, basePath, callback)
-				async.parallelLimit jobs, 5, callback
+				async.series jobs, callback
 
 	_createDirectory: (basePath, callback = (error) ->) ->
 		fs.mkdir basePath, (err) ->
